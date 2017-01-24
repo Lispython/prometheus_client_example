@@ -1,0 +1,4 @@
+Flask==0.10.1
+#-e git+https://github.com/prometheus/client_python.git#egg=prometheus_client
+prometheus_client==0.0.18
+uwsgi==2.0.14

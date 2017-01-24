@@ -1,0 +1,5 @@
+[Connection: close]
+[Host: dev_flask_app]
+[Cookie: None]
+
+/

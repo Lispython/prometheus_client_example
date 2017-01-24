@@ -1,0 +1,27 @@
+version: "2.0"
+
+services:
+  dev_prometheustest_flask_app:
+    image: dev_prometheustest_flask_app:latest
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - prometheus_multiproc_dir=/usr/src/app/storage/prometheus/
+      #- PROMETHEUS_UWSGI_SHAREDAREA=1
+      - PYTHONUNBUFFERED=1
+
+    command:
+      - "rm -rf /usr/src/app/storage/prometheus/* && uwsgi --ini=/usr/src/app/uwsgi.ini"
+    volumes:
+      - ./uwsgi.ini:/usr/src/app/uwsgi.ini
+      - ./:/usr/src/app/
+
+    ports:
+      - 8051:8051
+
+    networks:
+      - default
+
+networks:
+  default:
