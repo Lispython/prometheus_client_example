@@ -6,10 +6,15 @@ import prometheus_client
 from flask import request, Response, Flask
 from prometheus_client import Counter, Gauge, Summary, Histogram
 from prometheus_client.core import  CollectorRegistry
+from prometheus_client.multiprocess import MultiProcessCollector
+
 from string import ascii_letters
 from random import choice
 
 REGISTRY = CollectorRegistry(auto_describe=False)
+
+MultiProcessCollector(REGISTRY)
+
 
 requests_total = Counter("app:requests_total", "Total count of requests", ["method", "url_rule"], registry=REGISTRY)
 
